@@ -23,3 +23,7 @@ echo "nameserver 8.8.8.8" >> /etc/resolv.conf
 
 service dnsmasq restart
 
+cp init-conf/docker-log-analyser.conf /etc/init
+cp docker-log-analyser.sh /usr/local/etc/docker-log-analyser.sh
+
+start docker-log-analyser

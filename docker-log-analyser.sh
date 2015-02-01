@@ -4,7 +4,7 @@
 [ -f /var/run/docker-log.analyser.pid ] && pkill -P `cat /var/run/docker-log.analyser.pid`
 echo $$ > /var/run/docker-log.analyser.pid
 
-DOCKER_DOMAN=.dev.local
+DOCKER_DOMAN=`hostname`
 
 DOCKER_RESTART () {
 GET_NAME
