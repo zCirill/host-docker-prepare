@@ -1,0 +1,2 @@
+ft-deploy ALL=NOPASSWD: /etc/init.d/nginx reload
+ft-deploy ALL=NOPASSWD: /bin/chown -R ft-deploy /var/www/*
