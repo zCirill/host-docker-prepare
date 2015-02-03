@@ -17,21 +17,21 @@ DOCKER_JOB=`echo $n | cut -f4 -d\[ | cut -f1 -d\]`
 DOCKER_ID=`echo $n | cut -f4 -d"/" | cut -f1 -d"?"` 
 DOCKER_NAME=`docker inspect --format '{{ .Name }}' $DOCKER_ID | cut -f2 -d"/"`
 logger "docker job $DOCKER_JOB"
-logger "true name docker is $DOCKER_ID"
+logger "true name docker is $DOCKER_NAME"
 }
 
 GET_IP () {
-DOCKER_IP=`docker inspect --format '{{ .NetworkSettings.IPAddress }}' $DOCKER_ID`
-logger "$DOCKER_ID $DOCKER_IP"
+DOCKER_IP=`docker inspect --format '{{ .NetworkSettings.IPAddress }}' $DOCKER_NAME`
+logger "$DOCKER_NAME $DOCKER_IP"
 }
 
 RECORD_CHANGE () {
 #удаляем строку
-sed -i "/$DOCKER_ID$DOCKER_DOMAN/d" /etc/docker-container-hosts
-logger "delete $DOCKER_ID$DOCKER_DOMAN"
+sed -i "/$DOCKER_NAME$DOCKER_DOMAN/d" /etc/docker-container-hosts
+logger "delete $DOCKER_NAME$DOCKER_DOMAN"
 #добавляем строку
-echo "$DOCKER_IP $DOCKER_ID$DOCKER_DOMAN" >> /etc/docker-container-hosts
-logger "add $DOCKER_ID$DOCKER_DOMAN"
+echo "$DOCKER_IP $DOCKER_NAME$DOCKER_DOMAN" >> /etc/docker-container-hosts
+logger "add $DOCKER_NAME$DOCKER_DOMAN"
 pkill -x -HUP dnsmasq
 logger "dnsmasq reload"
 }
@@ -40,8 +40,8 @@ DOCKER_RM () {
 GET_NAME
 GET_IP
 #удаляем строку
-sed -i "/$DOCKER_ID$DOCKER_DOMAN/d" /etc/docker-container-hosts
-logger "delete $DOCKER_ID$DOCKER_DOMAN"
+sed -i "/$DOCKER_NAME$DOCKER_DOMAN/d" /etc/docker-container-hosts
+logger "delete $DOCKER_NAME$DOCKER_DOMAN"
 pkill -x -HUP dnsmasq
 logger "dnsmasq reload"
 }
