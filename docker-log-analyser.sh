@@ -55,8 +55,8 @@ tail -F /var/log/upstart/docker.log | while read n; do
  fi
 # if [[ $n =~ "-job stop" && $n =~ "OK (0)" ]] ; then DOCKER_STOP
 # fi
- if [[ $n =~ "DELETE" ]] ; then DOCKER_DELETE 
- fi
+# if [[ $n =~ "DELETE" ]] ; then DOCKER_DELETE 
+# fi
 
 done
 
