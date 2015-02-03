@@ -36,7 +36,7 @@ pkill -x -HUP dnsmasq
 logger "dnsmasq reload"
 }
 
-DOCKER_RM () {
+DOCKER_DELETE () {
 GET_NAME
 GET_IP
 #удаляем строку
@@ -55,8 +55,8 @@ tail -F /var/log/upstart/docker.log | while read n; do
  fi
 # if [[ $n =~ "-job stop" && $n =~ "OK (0)" ]] ; then DOCKER_STOP
 # fi
-# if [[ $n =~ "-job rm" && $n =~ "OK (0)" ]] ; then DOCKER_RM 
-# fi
+ if [[ $n =~ "DELETE" ]] ; then DOCKER_DELETE 
+ fi
 
 done
 
