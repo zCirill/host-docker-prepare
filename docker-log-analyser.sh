@@ -8,7 +8,7 @@ DOCKER_DOMAN=.`hostname`
 
 DOCKER_RESTART () {
 GET_NAME
-NAME_LEN=`echo $$DOCKER_NAME | wc -c`
+NAME_LEN=`echo $DOCKER_NAME | wc -c`
 logger boo $NAME_LEN
 if [ -n "$DOCKER_NAME" ] ; then GET_IP && RECORD_CHANGE
 fi
