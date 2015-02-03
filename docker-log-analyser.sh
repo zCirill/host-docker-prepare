@@ -31,6 +31,7 @@ logger "delete $DOCKER_NAME$DOCKER_DOMAN"
 echo "$DOCKER_IP $DOCKER_NAME$DOCKER_DOMAN" >> /etc/docker-container-hosts
 logger "add $DOCKER_NAME$DOCKER_DOMAN"
 pkill -x -HUP dnsmasq
+logger "dnsmasq reload"
 }
 
 DOCKER_RM () {
@@ -38,6 +39,7 @@ DOCKER_RM () {
 sed -i "/$DOCKER_NAME$DOCKER_DOMAN/d" /etc/docker-container-hosts
 logger "delete $DOCKER_NAME$DOCKER_DOMAN"
 pkill -x -HUP dnsmasq
+logger "dnsmasq reload"
 }
 
 #прицепляемся к логу и начинаем искать вхождения
