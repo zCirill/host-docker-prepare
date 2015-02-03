@@ -14,7 +14,7 @@ RECORD_CHANGE
 
 GET_NAME () {
 DOCKER_JOB=`echo $n | cut -f4 -d\[ | cut -f1 -d\]`
-DOCKER_ID=`echo $n | cut -f2 -d"(" | cut -f1 -d")"` 
+DOCKER_ID=`echo $n | cut -f4 -d"/" | cut -f1 -d"?"` 
 DOCKER_NAME=`docker inspect --format '{{ .Name }}' $DOCKER_ID | cut -f2 -d"/"`
 logger "docker job $DOCKER_JOB"
 logger "true name docker is $DOCKER_NAME"
@@ -49,14 +49,14 @@ logger "dnsmasq reload"
 #прицепляемся к логу и начинаем искать вхождения
 
 tail -F /var/log/upstart/docker.log | while read n; do
- if [[ $n =~ "-job restart" && $n =~ "OK (0)" ]] ; then DOCKER_RESTART
- fi
- if [[ $n =~ "-job start" && $n =~ "OK (0)" ]] ; then DOCKER_RESTART
+# if [[ $n =~ "-job restart" && $n =~ "OK (0)" ]] ; then DOCKER_RESTART
+# fi
+ if [[ $n =~ "POST" && $n =~ "start" ]] ; then DOCKER_RESTART
  fi
 # if [[ $n =~ "-job stop" && $n =~ "OK (0)" ]] ; then DOCKER_STOP
 # fi
- if [[ $n =~ "-job rm" && $n =~ "OK (0)" ]] ; then DOCKER_RM 
- fi
+# if [[ $n =~ "-job rm" && $n =~ "OK (0)" ]] ; then DOCKER_RM 
+# fi
 
 done
 
