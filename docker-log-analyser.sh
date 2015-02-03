@@ -9,6 +9,7 @@ DOCKER_DOMAN=.`hostname`
 DOCKER_RESTART () {
 GET_NAME
 if [ -n "$DOCKER_NAME" ] ; then GET_IP && RECORD_CHANGE
+fi
 }
 
 GET_NAME () {
