@@ -11,6 +11,7 @@ apt-get update && apt-get install -y dnsmasq
 #конфигурация dnsmasq
 
 echo "nameserver 8.8.8.8" > /etc/resolv_dnsqmasq.conf
+echo "search local" >> /etc/resolv_dnsqmasq.conf
 
 echo -e "conf-dir=/etc/dnsmasq.d\nlisten-address=$IP\ninterface=docker0\nresolv-file=/etc/resolv_dnsqmasq.conf" > /etc/dnsmasq.conf
 
@@ -20,7 +21,6 @@ touch /etc/docker-container-hosts
 
 echo "nameserver $IP" > /etc/resolv.conf
 echo "nameserver 8.8.8.8" >> /etc/resolv.conf
-
 service dnsmasq restart
 
 cp init-conf/docker-log-analyser.conf /etc/init
