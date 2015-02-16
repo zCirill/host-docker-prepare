@@ -12,7 +12,7 @@ apt-get update && apt-get install -y dnsmasq
 
 echo "nameserver 8.8.8.8" > /etc/resolv_dnsqmasq.conf
 
-echo -e "conf-dir=/etc/dnsmasq.d\nlisten-address=$IP\ninterface=docker0\nresolv-file=/etc/resolv_dnsqmasq.conf\naddress=/local/$IP" > /etc/dnsmasq.conf
+echo -e "conf-dir=/etc/dnsmasq.d\nlisten-address=$IP\ninterface=docker0\nresolv-file=/etc/resolv_dnsqmasq.conf" > /etc/dnsmasq.conf
 
 echo -e "addn-hosts=/etc/docker-container-hosts\ninterface=docker0" > /etc/dnsmasq.d/docker
 
