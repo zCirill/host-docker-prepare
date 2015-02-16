@@ -7,7 +7,7 @@ echo $$ > /var/run/docker-log.analyser.pid
 DOCKER_DOMAIN=.`hostname`
 DOCKER_DOMAIN2=.local
 
-DOCKER_RESTART () {
+DOCKER_START () {
 GET_NAME
 #NAME_LEN=`echo $DOCKER_NAME | wc -c`
 #logger boo $NAME_LEN
@@ -58,7 +58,7 @@ logger "dnsmasq reload"
 tail -F /var/log/upstart/docker.log | while read n; do
  if [[ $n =~ "-job restart" && $n =~ "OK (0)" ]] ; then DOCKER_RESTART
  fi
- if [[ $n =~ "POST" && $n =~ "/start" ]] ; then DOCKER_RESTART
+ if [[ $n =~ "POST" && $n =~ "/start" ]] ; then DOCKER_START
  fi
 # if [[ $n =~ "-job stop" && $n =~ "OK (0)" ]] ; then DOCKER_STOP
 # fi
