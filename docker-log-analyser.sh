@@ -15,6 +15,21 @@ if [ -n "$DOCKER_NAME" ] ; then GET_IP && RECORD_CHANGE
 fi
 }
 
+
+DOCKER_RESTART () {
+GET_NAME_R
+if [ -n "$DOCKER_NAME" ] ; then GET_IP && RECORD_CHANGE
+fi
+}
+
+GET_NAME_R () {
+DOCKER_JOB=`echo $n | cut -f4 -d\[ | cut -f1 -d\]`
+DOCKER_ID=`echo $n | cut -f2 -d\( | cut -f1 -d\)`
+DOCKER_NAME=`docker inspect --format '{{ .Name }}' $DOCKER_ID | cut -f2 -d"/"`
+logger "docker job $DOCKER_JOB"
+logger "true name docker is $DOCKER_NAME"
+}
+
 GET_NAME () {
 DOCKER_JOB=`echo $n | cut -f4 -d\[ | cut -f1 -d\]`
 DOCKER_ID=`echo $n | cut -f4 -d"/" | cut -f1 -d"?"` 
