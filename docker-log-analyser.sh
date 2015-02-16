@@ -5,6 +5,7 @@
 echo $$ > /var/run/docker-log.analyser.pid
 
 DOCKER_DOMAN=.`hostname`
+DOCKER_DOMAIN2=.local
 
 DOCKER_RESTART () {
 GET_NAME
@@ -30,10 +31,13 @@ logger "$DOCKER_NAME $DOCKER_IP"
 RECORD_CHANGE () {
 #удаляем строку
 sed -i "/$DOCKER_NAME$DOCKER_DOMAN/d" /etc/docker-container-hosts
+sed -i "/$DOCKER_NAME$DOCKER_DOMAN2/d" /etc/docker-container-hosts
 logger "delete $DOCKER_NAME$DOCKER_DOMAN"
 #добавляем строку
 echo "$DOCKER_IP $DOCKER_NAME$DOCKER_DOMAN" >> /etc/docker-container-hosts
+echo "$DOCKER_IP $DOCKER_NAME$DOCKER_DOMAN2" >> /etc/docker-container-hosts
 logger "add $DOCKER_NAME$DOCKER_DOMAN"
+logger "add $DOCKER_NAME$DOCKER_DOMAN2"
 pkill -x -HUP dnsmasq
 logger "dnsmasq reload"
 }
@@ -43,6 +47,7 @@ GET_NAME
 GET_IP
 #удаляем строку
 sed -i "/$DOCKER_NAME$DOCKER_DOMAN/d" /etc/docker-container-hosts
+sed -i "/$DOCKER_NAME$DOCKER_DOMAN2/d" /etc/docker-container-hosts
 logger "delete $DOCKER_NAME$DOCKER_DOMAN"
 pkill -x -HUP dnsmasq
 logger "dnsmasq reload"

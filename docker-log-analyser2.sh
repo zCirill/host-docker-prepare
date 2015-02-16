@@ -5,7 +5,7 @@
 echo $$ > /var/run/docker-log.analyser.pid
 
 DOCKER_DOMAIN=.`hostname`
-DOCKER_DOMAIN2=.dev.local
+DOCKER_DOMAIN2=.local
 DOCKER_RESTART () {
 GET_NAME
 GET_IP
