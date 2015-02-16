@@ -58,7 +58,7 @@ logger "dnsmasq reload"
 tail -F /var/log/upstart/docker.log | while read n; do
 # if [[ $n =~ "-job restart" && $n =~ "OK (0)" ]] ; then DOCKER_RESTART
 # fi
- if [[ $n =~ "POST" && $n =~ "start" ]] ; then DOCKER_RESTART
+ if [[ $n =~ "POST" && $n =~ "/start" ]] ; then DOCKER_RESTART
  fi
 # if [[ $n =~ "-job stop" && $n =~ "OK (0)" ]] ; then DOCKER_STOP
 # fi
