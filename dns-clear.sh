@@ -9,7 +9,7 @@ touch /etc/docker-container-hosts
 
 cat docker.name | while read n
 	do IP=`docker inspect --format '{{ .NetworkSettings.IPAddress }}' $n` && echo $IP $n.$DOCKER_DOMAN >> /etc/docker-container-hosts \
-	&& echo $IP $n >> /etc/docker-container-hosts
+	&& echo $IP $n.local >> /etc/docker-container-hosts
 done
 
 pkill -x -HUP dnsmasq
