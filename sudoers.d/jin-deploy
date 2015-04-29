@@ -1,0 +1,2 @@
+jin-deploy ALL=NOPASSWD: /etc/init.d/nginx reload
+jin-deploy ALL=NOPASSWD: /bin/chown -R jin-deploy /home/jin-deploy/*
