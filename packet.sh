@@ -3,6 +3,8 @@
 if [ -z "$1" ] ; then echo "set correct ip to docker service" && exit 1
 fi
 
+sed -i s/ru.archive.ubuntu.com/mirror.yandex.ru/g /etc/apt/sources.list
+
 apt-get update && apt-get install curl
 
 curl -sSL https://get.docker.com/ubuntu/ | sh

@@ -1,7 +1,5 @@
 #!/bin/bash
 
-sed -i s/ru.archive.ubuntu.com/mirror.yandex.ru/g /etc/apt/sources.list
-
 echo "nameserver 8.8.8.8" > /etc/resolv.conf
 
 #получаем адрес сервиса докера
