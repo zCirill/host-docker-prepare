@@ -6,7 +6,7 @@ echo "nameserver 8.8.8.8" > /etc/resolv.conf
 IP=`grep ^DOCKER_OPTS /etc/default/docker | cut -f3 -d" "`
 
 #установка dnsmasq
-apt-get update && apt-get install -y dnsmasq
+apt-get update && apt-get install -y dnsmasq nginx
 
 #конфигурация dnsmasq
 
@@ -27,4 +27,4 @@ service dnsmasq restart
 cp init-conf/docker-log-analyser.conf /etc/init
 cp docker-log-analyser.sh /usr/local/etc/docker-log-analyser.sh
 
-start docker-log-analyser
+start docker-log-analyser &
