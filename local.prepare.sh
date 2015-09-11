@@ -1,7 +1,7 @@
 sed -i s/ru.archive.ubuntu.com/mirror.yandex.ru/g /etc/apt/sources.list
 
 aptitude update
-aptitude install curl
+aptitude install curl -y
 
 curl -sSL https://get.docker.com/ubuntu/ | sh
 
